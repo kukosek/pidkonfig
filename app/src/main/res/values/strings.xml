@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">PIDkonfig</string>
+    <string name="tab_text_1">Presets</string>
+    <string name="tab_text_2">LinePID</string>
+    <string name="tab_text_3">Motors</string>
+    <string name="tab_text_4">Mode</string>
+    <string name="Kp">Kp</string>
+    <string name="Kd">Kd</string>
+    <string name="Ki">Ki</string>
+    <string name="K_lineLost">K Line lost</string>
+    <string name="target_linepos">Target line pos</string>
+    <string name="title_motorpid">Motor PI speed control</string>
+    <string name="mKp">Motor Kp</string>
+    <string name="mKi">Motor Ki</string>
+    <string name="mBaseSpeed">Base speed</string>
+    <string name="general_settings">General</string>
+    <string name="enable_bluetooth">Enable bluetooth plz :((</string>
+    <string name="bluetooth_error">Bluetooth error occurred :{</string>
+    <string name="bluetooth_connecting">Connecting, hope you turned on that boi</string>
+    <string name="bluetooth_disconnect">Disconnected.</string>
+    <string name="config_received">Config received :]</string>
+    <string name="connect_success">Successfully connected </string>
+    <string name="bluetooth_name">Bluetooth device name</string>
+    <string name="title_dialog_devicename">Pair your device, then enter bluetooth device name</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="no_device_with_name">Couldn\'t find a paired device with this name.</string>
+    <string name="more_devices_with_name">I picked the last - there more devices with the name</string>
+
+    <string name="mode_standby">Standby</string>
+    <string name="mode_pid">PID Line Following</string>
+    <string name="mode_motortest">Motor test</string>
+    <!-- Preferences -->
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="range_kp">Kp slider range</string>
+    <string name="range_kd">Kd slider range</string>
+    <string name="range_ki">Ki slider range</string>
+    <string name="range_k_linelost">K Line lost slider range</string>
+    <string name="range_target_linepos">Target line pos slider range</string>
+    <string name="range_mkp">Kp slider range</string>
+    <string name="range_mki">Ki slider range</string>
+</resources>

@@ -1,0 +1,53 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="@string/general_settings">
+
+        <EditTextPreference
+            app:key="bt_name"
+            app:title="@string/bluetooth_name"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/tab_text_2">
+
+        <EditTextPreference
+            app:key="range_kp"
+            app:title="@string/range_kp"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0.0 - 1.0"/>
+        <EditTextPreference
+            app:key="range_kd"
+            app:title="@string/range_kd"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0.0 - 1.0"/>
+        <EditTextPreference
+            app:key="range_ki"
+            app:title="@string/range_ki"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0.0 - 1.0"/>
+        <EditTextPreference
+            app:key="range_k_linelost"
+            app:title="@string/range_k_linelost"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="1.0 - 2.5"/>
+        <EditTextPreference
+            app:key="range_target_linepos"
+            app:title="@string/range_target_linepos"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="-1.0 - 1.0"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/tab_text_3">
+
+        <EditTextPreference
+            app:key="range_mkp"
+            app:title="@string/range_mkp"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0.0 - 1.0"/>
+        <EditTextPreference
+            app:key="range_mki"
+            app:title="@string/range_mki"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0.0 - 1.0"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

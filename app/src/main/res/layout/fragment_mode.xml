@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/modes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="60dp">
+
+        <RadioButton
+            android:id="@+id/mode_standby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/mode_standby"
+            android:textAlignment="viewStart" />
+
+        <RadioButton
+            android:id="@+id/mode_pid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mode_pid"
+            android:textAlignment="viewStart" />
+
+        <RadioButton
+            android:id="@+id/mode_motortest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mode_motortest"
+            android:textAlignment="viewStart" />
+    </RadioGroup>
+</LinearLayout>
