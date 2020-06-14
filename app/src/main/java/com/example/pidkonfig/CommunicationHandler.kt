@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.example.pidkonfig.ui.main.SectionsPagerAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.harrysoft.androidbluetoothserial.BluetoothManager
 import com.harrysoft.androidbluetoothserial.BluetoothSerialDevice
@@ -19,10 +20,11 @@ import com.harrysoft.androidbluetoothserial.SimpleBluetoothDeviceInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CommunicationHandler (context: Context, bluetoothManager: BluetoothManager, setting: Setting, sharedPref: SharedPreferences, mainLayout: CoordinatorLayout) {
+class CommunicationHandler (context: Context, bluetoothManager: BluetoothManager, setting: Setting, sectionsPagerAdapter: SectionsPagerAdapter, sharedPref: SharedPreferences, mainLayout: CoordinatorLayout) {
     val context = context
     val bluetoothManager = bluetoothManager
     val setting = setting
+    val sectionsPagerAdapter = sectionsPagerAdapter
     val sharedPref = sharedPref
     val mainLayout = mainLayout
 
@@ -190,6 +192,7 @@ class CommunicationHandler (context: Context, bluetoothManager: BluetoothManager
             val mySnackbar = Snackbar.make(mainLayout,
                 R.string.config_received, Snackbar.LENGTH_SHORT)
             mySnackbar.show()
+            sectionsPagerAdapter.callOnSettingChange()
         }else{
             val splitted = message.split("=")
             if (splitted.size == 2) {

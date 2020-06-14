@@ -19,11 +19,25 @@ private val TAB_TITLES = arrayOf(
  */
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm) {
-
+    private val fragmentHashMap: HashMap<Int, PlaceholderFragment> = HashMap()
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1)
+        if (fragmentHashMap[position] != null) {
+            return fragmentHashMap[position]!!;
+        }else{
+            val frag = PlaceholderFragment.newInstance(position + 1)
+            fragmentHashMap[position] = frag
+            return frag
+        }
+    }
+
+    fun callOnSettingChange() {
+        for (i in 0..getCount()) {
+            if (fragmentHashMap[i] != null) {
+                fragmentHashMap[i]?.onSettingChange()
+            }
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

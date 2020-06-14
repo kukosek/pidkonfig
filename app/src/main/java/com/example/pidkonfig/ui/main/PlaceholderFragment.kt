@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.example.pidkonfig.MainActivity
 import com.example.pidkonfig.R
+import com.example.pidkonfig.Setting
+import kotlin.math.floor
 
 
 /**
@@ -31,7 +33,7 @@ class PlaceholderFragment : Fragment() {
     }
     data class Ranges(val Kp: SlRange, val Kd: SlRange, val Ki: SlRange, val K_lineLost: SlRange, val target_linepos: SlRange)
     var ranges : Ranges? = null
-    data class Setting(var saved: Boolean, var Kp: Float, var Kd: Float, var Ki: Float, var K_lineLost: Float, var target_linepos: Float, var mKp: Float,var mKi: Float, var mbs: Float)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,23 +54,27 @@ class PlaceholderFragment : Fragment() {
         }
     }
 
+    val sliderStep = 0.0001
+    val sliderMax : Int =  (1/sliderStep).toInt()
+
+    lateinit var root : View
+    lateinit var setting : Setting
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
 
-        val setting = (activity as MainActivity).setting
+        setting = (activity as MainActivity).setting
         val comHandler = (activity as MainActivity).comHandler
 
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
 
 
-        val sliderStep = 0.0001
-        val sliderMax : Int =  (1/sliderStep).toInt()
+
 
         val do_riti : Int
-        val root : View
+
         val sn = arguments?.getInt(ARG_SECTION_NUMBER)
         when(sn) {
             2 -> {
@@ -233,7 +239,52 @@ class PlaceholderFragment : Fragment() {
         }
         return root
     }
+    fun onSettingChange() {
+        if (view !=null){
+            val sn =arguments?.getInt(ARG_SECTION_NUMBER)
 
+            fun valueToSlider(value: Float, range : SlRange?) : Int {
+                return ((value - range!!.min) * (sliderMax) / (range!!.max - range!!.min)).toInt();
+            }
+
+            when (sn) {
+                1 -> {
+
+                }
+                2 -> {
+                    root.findViewById<CheckBox>(R.id.checkBox_Kp).isChecked = setting.Kp != 0.0f
+                    root.findViewById<SeekBar>(R.id.seekbar_Kp).progress = valueToSlider(setting.Kp, ranges?.Kp)
+
+                    root.findViewById<CheckBox>(R.id.checkBox_Kd).isChecked = setting.Kd != 0.0f
+                    root.findViewById<SeekBar>(R.id.seekbar_Kd).progress = valueToSlider(setting.Kd, ranges?.Kd)
+
+                    root.findViewById<CheckBox>(R.id.checkBox_Ki).isChecked = setting.Ki != 0.0f
+                    root.findViewById<SeekBar>(R.id.seekbar_Ki).progress = valueToSlider(setting.Ki, ranges?.Ki)
+
+                    root.findViewById<SeekBar>(R.id.seekbar_K_lineLost).progress = valueToSlider(setting.K_lineLost, ranges?.K_lineLost)
+                    root.findViewById<SeekBar>(R.id.seekbar_target_linepos).progress = valueToSlider(setting.target_linepos, ranges?.target_linepos)
+                }
+                3 -> {
+                    root.findViewById<SeekBar>(R.id.seekbar_baseSpeed).progress = valueToSlider(setting.mbs, SlRange(0.0f, 1.0f))
+
+                    root.findViewById<CheckBox>(R.id.checkBox_m_pidEnable).isChecked = setting.M_pidEnable
+
+                    root.findViewById<CheckBox>(R.id.checkBox_mKp).isChecked = setting.mKp != 0.0f
+                    root.findViewById<SeekBar>(R.id.seekbar_mKp).progress = valueToSlider(setting.mKp, ranges?.Kp)
+
+                    root.findViewById<CheckBox>(R.id.checkBox_mKi).isChecked = setting.mKi != 0.0f
+                    root.findViewById<SeekBar>(R.id.seekbar_mKi).progress = valueToSlider(setting.mKi, ranges?.Ki)
+                }
+                4 -> {
+
+                }
+                else -> {
+
+                }
+            }
+        }
+
+    }
     fun checkBoxToggle(view: View) : Unit {
         val cb = view as CheckBox;
         val value = when(cb.isChecked()) {

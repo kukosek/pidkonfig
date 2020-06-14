@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     var bluetoothManager : BluetoothManager? = null
     var sharedPref : SharedPreferences? = null
     var menuItem : MenuItem? = null
+    var sectionsPagerAdapter : SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,15 +58,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
+
+        sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+
         comHandler = CommunicationHandler(
             context = this,
             bluetoothManager = bluetoothManager!!,
             setting = setting,
+            sectionsPagerAdapter = sectionsPagerAdapter!!,
             sharedPref = sharedPref!!,
             mainLayout = findViewById<CoordinatorLayout>(R.id.main_layout)
         )
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
@@ -100,6 +104,7 @@ class MainActivity : AppCompatActivity() {
                         context = this,
                         bluetoothManager = bluetoothManager!!,
                         setting = setting,
+                        sectionsPagerAdapter = sectionsPagerAdapter!!,
                         sharedPref = sharedPref!!,
                         mainLayout = findViewById<CoordinatorLayout>(R.id.main_layout)
                     )
